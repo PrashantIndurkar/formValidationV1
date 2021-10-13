@@ -11,12 +11,17 @@ function showError(input, message) {
   const small = formControl.querySelector("small");
   small.innerText = message;
 }
+
 // Show input Success message
 function showSuccess(input, message) {
   const formControl = input.parentElement;
   formControl.className = "form-control success";
   const small = formControl.querySelector("small");
   small.innerText = message;
+}
+function isValidEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 }
 
 // EventListener
@@ -33,6 +38,8 @@ form.addEventListener("submit", (e) => {
   // 	Email
   if (email.value === "") {
     showError(email, "Email Is Required");
+  } else if (!isValidEmail(email.value)) {
+    showError(email, "Email Is not valid");
   } else {
     showSuccess(email);
   }
