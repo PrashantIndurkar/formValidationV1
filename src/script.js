@@ -1,0 +1,53 @@
+const form = document.getElementById("form");
+const username = document.getElementById("username");
+const email = document.getElementById("email");
+const password = document.getElementById("password");
+const password2 = document.getElementById("password2");
+
+// Show input error message
+function showError(input, message) {
+  const formControl = input.parentElement;
+  formControl.className = "form-control error";
+  const small = formControl.querySelector("small");
+  small.innerText = message;
+}
+// Show input Success message
+function showSuccess(input, message) {
+  const formControl = input.parentElement;
+  formControl.className = "form-control success";
+  const small = formControl.querySelector("small");
+  small.innerText = message;
+}
+
+// EventListener
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  // username
+  if (username.value === "") {
+    showError(username, "username is required");
+  } else {
+    showSuccess(username);
+  }
+
+  // 	Email
+  if (email.value === "") {
+    showError(email, "Email Is Required");
+  } else {
+    showSuccess(email);
+  }
+
+  // 	Password
+  if (password.value === "") {
+    showError(password, "password Is Required");
+  } else {
+    showSuccess(password);
+  }
+
+  // 	username
+  if (password2.value === "") {
+    showError(password2, "Conformpassword Is Required");
+  } else {
+    showSuccess(password2);
+  }
+});
